@@ -1,5 +1,5 @@
 /*
-	Imagegalleyr 1.0.0 b2 dev version
+	Imagegalleyr 1.0.0 b2 dev version 
 	Copyright 2009 a2h - http://a2h.uni.cc/
 
 	Licensed under the Apache License, Version 2.0 (the "License");
