@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>glyr</title>
+		<link type="text/css" rel="stylesheet" href="style.css" />
+		<script type="text/javascript" src="html5.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.scrollto.min.js"></script>
+		<script type="text/javascript" src="http://github.com/a2h/js/raw/master/glyr/jquery.glyr.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var glyrimages = [
+					{ src: 'rose1.jpg', alt: 'Rosa bracteata' },
+					{ src: 'rose2.jpg', alt: 'Bandel rose' }
+				];
+				
+				$("#demo-main").glyr({
+					images: glyrimages,
+					statusPosition: 'bottom'
+				});
+				$("#demo-basic").glyr({
+					images: glyrimages
+				});
+				$("#demo-styled").glyr({
+					images: glyrimages,
+					allowClick: false,
+					showCaption: false,
+					speed: 1000
+				});
+			});
+		</script>
+	</head>
+	
+	<body>
+		<div id="bg-grain"></div>
+		
+		<div id="demo-main"></div>
+		
+		<div id="content">
+			<header id="header">
+				<h1>gly<span style="color:#c5f080;">r</span>.</h1>
+				<h2 id="subtitle">a gpl3 licensed jquery plugin for creating <em>customisable, slick</em> image slideshows</h2>
+			</header>
+			
+			<section id="toc">
+				<h2>table of contents</h2>
+				<ul>
+					<li><a href="javascript:;" onclick="$.scrollTo('a[name=download]', 500, {easing:'easeOutBack'})">download</a></li>
+					<li><a href="javascript:;" onclick="$.scrollTo('a[name=changelog]', 500, {easing:'easeOutBack'})">changelog</a></li>
+					<li><a href="javascript:;" onclick="$.scrollTo('a[name=roadmap]', 550, {easing:'easeOutBack'})">roadmap</a></li>
+					<li><a href="javascript:;" onclick="$.scrollTo('a[name=documentation]', 600, {easing:'easeOutBack'})">documentation</a></li>
+				</ul>
+			</section>
+			
+			<section id="download">
+				<a name="download"><h2>download</h2></a>
+				<p>Already want to get the plugin? Go ahead! It's been tested with jQuery 1.4.1 and <i>may</i> work on 1.3.x releases, but this is not guaranteed.</p>
+				<p>Not using jQuery? Write less, do more. <a href="http://jquery.com/">See why you should.</a></p>
+				<p>
+					<a href="jquery.glyr.js">jquery.glyr.min.js</a> <span class="info">0.4.9, minified (6kb)</span><br />
+					<a href="jquery.glyr.js">jquery.glyr.js</a> <span class="info">0.4.9, standard (10kb)</span>
+				</p>
+			</section>
+			
+			<section id="changelog">
+				<a name="changelog"><h2>changelog</h2></a>
+				<h3>0.1 to 0.2 (2009-06-21)</h3>
+				<ul>
+					<li>ADDED: Styling/timing settings</li>
+				</ul>
+				<h3>0.2 to 0.4.9 (2010-02-11)</h3>
+				<ul>
+					<li>CHANGED: The script is now a jQuery plugin</li>
+					<li>CHANGED: Styling must now be defined through CSS with added classes</li>
+					<li>CHANGED: Options are now an object instead of individual variables</li>
+					<li>CHANGED: Multiple galleries on a page are now possible</li>
+					<li>ADDED: Individual parts of the tab/caption area can be hidden</li>
+					<li>ADDED: The tab/caption area can be moved</li>
+					<li>ADDED: The tabs can be clicked on <strong>(BUGGY)</strong></li>
+					<li>OTHER: Renamed from imagegalleyr</li>
+					<li>OTHER: Relicensed under GPL3</li>
+				</ul>
+			</section>
+			
+			<section id="roadmap">
+				<a name="roadmap"><h2>roadmap</h2></a>
+				0.6 should offer different transition types<br />
+				Either 0.6 or above could offer moving an image around<br />
+				Allow tabs to be things other than divs maybe?
+			</section>
+			
+			<section id="documentation">
+				<a name="documentation"><h2>documentation</h2></a>
+				
+				<p>Using just a bit of code, you've got yourself a basic gallery. (In order: HTML, CSS, JavaScript)</p>
+				
+<pre>&lt;div id="demo-basic"&gt;&lt;/div&gt;</pre>
+
+<pre>#demo-basic .images
+{
+	width: 320px;
+	height: 240px;
+}</pre>
+
+<pre>$(document).ready(function() {
+	$("#demo-basic").glyr({
+		images: [
+			{ src: 'rose1.jpg', alt: 'Rosa bracteata' },
+			{ src: 'rose2.jpg', alt: 'Bandel rose' }
+		]
+	});
+});</pre>
+
+				<p><div id="demo-basic"></div></p>
+				
+				<p>But basic is just that, basic. For the most part, you'll be making your gallery look special through CSS.
+				A numerous amount of CSS classes are provided for your use.
+				These classes can have a prefix prepended in the event you have colliding class names, but that will be covered later.</p>
+				
+				<ul>
+					<li><code>.glyr</code> - This contains everything part of one gallery, created from whatever element you run the glyr method on. <strong>Note: this class name is not affected if you set a prefix</strong></li>
+					<li><code>.images</code> - The container for the images.</li>
+					<li><code>.image</code> - An image.</li>
+					<li><code>.bottom</code> - The container for the tabs/caption.</li>
+					<li><code>.tabs</code> - The container for the tabs.</li>
+					<li><code>.tab</code> - A tab.</li>
+					<li><code>.tab-on</code> - A tab that represents the currently shown image.</li>
+					<li><code>.tab-off</code> - A tab that represents a currently hidden image.</li>
+					<li><code>.caption</code> - The container for the caption.</li>
+				</ul>
+				
+				<p>As for the options configured via the JavaScript:</p>
+				
+				<ul>
+					<li><code>prefix</code> (string) - A prefix to be appended in front of the class names. It can only contain alphanumeric characters and the characters - and _</li>
+					<li><code>images</code> (array) - This array should contain objects which contain attributes set on the images, e.g. src, alt, title</li>
+					<li><code>statusPosition</code> (string) - This can either be 'hide', 'after', 'before', 'bottom' or 'top'</li>
+					<li><code>showTabs</code> (boolean) - Self explanatory.</li>
+					<li><code>showCaptions</code> (boolean) - Self explanatory.</li>
+					<li><code>baseStyle</code> (boolean) - Whether this gallery should make use of the default styling as a base.</li>
+					<li><code>allowClick</code> (boolean) - Whether the tabs should be clickable.</li>
+					<li><code>speed</code> (integer) - How many milliseconds it should take to change images.</li>
+					<li><code>delay</code> (integer) - How many milliseconds the gallery should wait until changing image.</li>
+				</ul>
+				
+				<p>For example:</p>
+				
+<pre>&lt;div id="demo-styled"&gt;&lt;/div&gt;</pre>
+
+<pre>/* as this is the unique gallery element itself,
+the class .gallery has not been appended to the selector,
+but if you want to you can */
+#demo-styled
+{
+	background-color: #000;
+	width: 480px;
+	height: 300px;
+}
+
+#demo-styled .images
+{
+	border: 1px solid #99a488;
+}
+
+#demo-styled .tab
+{
+	margin-top: 5px;
+	width: 16px;
+	height: 4px;
+}
+#demo-styled .tab-on
+{
+	background-color: #aaec41;
+}
+#demo-styled .tab-off
+{
+	background-color: #99a488;
+}
+
+#demo-styled .caption
+{
+	font-size: 11px;
+	font-family: georgia, 'times new roman', times, serif;
+	height: 13px;
+}</pre>
+
+<pre>$(document).ready(function() {
+	$("#demo-styled").glyr({
+		images: [
+			{ src: 'rose1.jpg', alt: 'Rosa bracteata' },
+			{ src: 'rose2.jpg', alt: 'Bandel rose' }
+		],
+		allowClick: false,
+		showCaption: false,
+		speed: 1000
+	});
+});</pre>
+
+				<p><div id="demo-styled"></div></p>
+			</section>
+			
+			<section id="credits">
+				<p style="font-size:11px;">Images used from <a href="http://en.wikipedia.org/wiki/File:Rosa_bracteata_4.jpg">here</a>,
+				<a href="http://en.wikipedia.org/wiki/File:Bandel_Rose.jpg">here</a> respectively</p>
+			</section>
+		</div>
+	</body>
+</html>
